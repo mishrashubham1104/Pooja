@@ -181,52 +181,96 @@ export default function Home() {
           <div className="w-24 h-1 bg-gold-500 mx-auto rounded-full"></div>
         </div>
 
-        {/* Infinite Auto-Scroll Marquee (Mobile & Desktop) */}
-        <div className="marquee-wrapper py-4 px-2">
-          <div className="marquee-track flex" style={{ gap: '24px' }}>
-            {/* Render array twice for a seamless infinite loop */}
-            {[...services, ...services].map((srv, i) => (
-              <motion.div
-                whileHover={{ y: -6 }}
-                key={i}
-                tabIndex={0}
-                style={{ width: '280px', marginRight: '24px' }}
-                className="relative flex-shrink-0 bg-white rounded-2xl shadow-md border border-saffron-100 overflow-hidden group cursor-pointer hover:shadow-2xl focus:outline-none transition-all duration-300"
-              >
-                {/* Pooja Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={srv.image}
-                    alt={srv.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
-                  />
-                  <div className="hidden absolute inset-0 bg-saffron-50 items-center justify-center text-6xl">{srv.icon}</div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                  <span className="absolute top-3 left-3 text-2xl drop-shadow">{srv.icon}</span>
-                </div>
+        {/* ─── MOBILE: Infinite Auto-Scroll Marquee ─── */}
+        <div className="block md:hidden py-4">
+          <div className="marquee-wrapper px-2">
+            <div className="marquee-track flex" style={{ gap: '24px' }}>
+              {/* Render array twice for a seamless infinite loop */}
+              {[...services, ...services].map((srv, i) => (
+                <div
+                  key={i}
+                  tabIndex={0}
+                  style={{ width: '280px', marginRight: '24px' }}
+                  className="relative flex-shrink-0 bg-white rounded-2xl shadow-md border border-saffron-100 overflow-hidden group cursor-pointer hover:shadow-2xl focus:outline-none transition-all duration-300"
+                >
+                  {/* Pooja Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={srv.image}
+                      alt={srv.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+                    />
+                    <div className="hidden absolute inset-0 bg-saffron-50 items-center justify-center text-6xl">{srv.icon}</div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    <span className="absolute top-3 left-3 text-2xl drop-shadow">{srv.icon}</span>
+                  </div>
 
-                {/* Card Body */}
-                <div className="p-5 h-32">
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">{srv.name}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 md:line-clamp-none">{srv.desc}</p>
-                </div>
+                  {/* Card Body */}
+                  <div className="p-5 h-32">
+                    <h3 className="text-lg font-bold text-gray-800 mb-2">{srv.name}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 md:line-clamp-none">{srv.desc}</p>
+                  </div>
 
-                {/* Hover/Focus Book Button (Pops up on Tap/Hover) */}
-                <div className="absolute inset-x-0 bottom-0 flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto group-focus:pointer-events-auto">
-                  <button
-                    onClick={(e) => handleBookNow(e, srv.name)}
-                    className="pointer-events-auto bg-[#DA6626] hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-full shadow-xl transform translate-y-4 group-hover:translate-y-0 group-focus:translate-y-0 transition-transform duration-300"
-                  >
-                    📅 Book Now
-                  </button>
-                </div>
+                  {/* Hover/Focus Book Button (Pops up on Tap/Hover) */}
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto group-focus:pointer-events-auto">
+                    <button
+                      onClick={(e) => handleBookNow(e, srv.name)}
+                      className="pointer-events-auto bg-[#DA6626] hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-full shadow-xl transform translate-y-4 group-hover:translate-y-0 group-focus:translate-y-0 transition-transform duration-300"
+                    >
+                      📅 Book Now
+                    </button>
+                  </div>
 
-                {/* Subtle hover tint */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 rounded-2xl pointer-events-none" />
-              </motion.div>
-            ))}
+                  {/* Subtle hover tint */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 rounded-2xl pointer-events-none" />
+                </div>
+              ))}
+            </div>
           </div>
+        </div>
+
+        {/* ─── DESKTOP: Grid ─── */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((srv, i) => (
+            <motion.div
+              whileHover={{ y: -6 }}
+              key={i}
+              className="relative bg-white rounded-2xl shadow-md border border-saffron-100 overflow-hidden group cursor-pointer hover:shadow-2xl transition-all duration-300"
+            >
+              {/* Pooja Image */}
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={srv.image}
+                  alt={srv.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+                />
+                <div className="hidden absolute inset-0 bg-saffron-50 items-center justify-center text-6xl">{srv.icon}</div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <span className="absolute top-3 left-3 text-2xl drop-shadow">{srv.icon}</span>
+              </div>
+
+              {/* Card Body */}
+              <div className="p-5">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">{srv.name}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">{srv.desc}</p>
+              </div>
+
+              {/* Hover Book Button */}
+              <div className="absolute inset-x-0 bottom-0 flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
+                <button
+                  onClick={(e) => handleBookNow(e, srv.name)}
+                  className="pointer-events-auto bg-[#DA6626] hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-full shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+                >
+                  📅 Book Now
+                </button>
+              </div>
+
+              {/* Subtle hover tint */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 rounded-2xl pointer-events-none" />
+            </motion.div>
+          ))}
         </div>
 
         <div className="text-center mt-10">
