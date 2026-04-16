@@ -289,15 +289,15 @@ export default function Home() {
         </div>
 
         {/* ─── MOBILE: 3D Card Stacking Swiper ─── */}
-        <div className="block md:hidden py-4">
-          <div className="flex justify-center" style={{ height: '420px' }}>
+        <div className="block md:hidden pb-2 pt-4">
+          <div className="flex justify-center">
             <Swiper
               effect={'cards'}
               grabCursor={true}
               modules={[EffectCards, Autoplay]}
               autoplay={{ delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true }}
               initialSlide={0}
-              style={{ width: '260px', height: '380px' }}
+              style={{ width: '240px', height: '320px' }}
             >
               {DESTINATIONS.map((dest, i) => (
                 <SwiperSlide
@@ -324,7 +324,7 @@ export default function Home() {
               ))}
             </Swiper>
           </div>
-          <p className="text-center text-gray-500 text-xs mt-2">← Swipe to explore more →</p>
+          <p className="text-center text-gray-500 text-xs mt-6 mb-2">← Swipe to explore more →</p>
         </div>
 
         {/* ─── DESKTOP: Infinite Auto-Scroll Marquee ─── */}
