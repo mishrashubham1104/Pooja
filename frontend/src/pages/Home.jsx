@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Search, Star, MapPin, CheckCircle, X, AlertCircle } from 'lucide-react';
+import { Search, Star, MapPin, CheckCircle, X, AlertCircle, CalendarDays, Quote, Sun, Moon, Clock } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -34,6 +34,20 @@ const DESTINATIONS = [
   { city: 'Puri', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgYwwwq3-IAHw0nHNKnmhbALt_td-ZgC7xaw&s', color: '#7c2d12' },
   { city: 'Tirupati', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREM5OVHnZmKd_dhKFbqBD1VHiYKdkJ-e5EYCjANSxF-A&s', color: '#4a1d96' },
   { city: 'Rameshwaram', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0ch-na4Hw2hqAfeVJjzIE0RaO0Yl2T5aFSw&s', color: '#064e3b' }
+];
+
+const MUHURATS = [
+  { day: '12', month: 'MAY', title: 'Akshaya Tritiya', desc: 'Highly auspicious for new beginnings and homam.', img: 'https://camouflageclicks.com/assets/uploads/blog/4875821.jpg' },
+  { day: '18', month: 'JUN', title: 'Ganga Dussehra', desc: 'Perform River Puja to wash away sins and invoke purity.', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZe3dX8kvdyV3ykiLrvnrwetx6SC7Aatngfw&s' },
+  { day: '25', month: 'JUL', title: 'Nag Panchami', desc: 'Perform Kaal Sarp Dosh Puja and seek protection.', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiqNxvgSwbO-D5ok11hQUQcihXLxUj0SqM7A&s' },
+  { day: '15', month: 'AUG', title: 'Raksha Bandhan', desc: 'Special Poojas for family protection and harmony.', img: 'https://www.partyvillas.in/blog/wp-content/uploads/2025/07/raksha-bandhan-message-image.jpg' },
+];
+
+const TESTIMONIALS = [
+  { name: 'Rahul Sharma', location: 'Delhi', text: 'Booking a Pandit for our Griha Pravesh was so seamless. Pandit Ji was extremely knowledgeable and explained the significance of every Vedic ritual beautifully. Would highly recommend!', rating: 5, avatar: 'https://api.dicebear.com/7.x/notionists/svg?seed=Rahul&backgroundColor=fce8db' },
+  { name: 'Priya Patel', location: 'Mumbai', text: 'We booked a virtual Satyanarayan Katha since we live abroad. The video quality was great, the chanting was mesmerising, and the overall experience felt incredibly authentic and divine.', rating: 5, avatar: 'https://api.dicebear.com/7.x/notionists/svg?seed=Priya&backgroundColor=fce8db' },
+  { name: 'Anil Desai', location: 'Pune', text: 'Very professional platform. The transparent pricing and verified Pandits gave us peace of mind during our wedding preparations. Everything started completely on time.', rating: 5, avatar: 'https://api.dicebear.com/7.x/notionists/svg?seed=Anil&backgroundColor=fce8db' },
+  { name: 'Sneha Verma', location: 'Bangalore', text: 'The ease of finding a Pandit for a specific date and time is unmatched. A deeply spiritual experience at our new office inauguration.', rating: 5, avatar: 'https://api.dicebear.com/7.x/notionists/svg?seed=Sneha&backgroundColor=fce8db' },
 ];
 
 export default function Home() {
@@ -172,6 +186,36 @@ export default function Home() {
           </div>
           <button type="submit" className="bg-maroon-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-maroon-700 transition-colors shadow-md">Search</button>
         </form>
+      </section>
+
+      {/* Today's Panchang Widget */}
+      <section className="max-w-4xl mx-auto mt-6 relative z-10 px-4">
+        <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-5 md:p-6 bg-gradient-to-r from-orange-50 to-white">
+          <div className="flex items-center justify-between mb-4 pb-4 border-b border-orange-100">
+            <h3 className="text-lg font-bold text-maroon-700 flex items-center gap-2">
+              <Sun className="text-orange-500 w-6 h-6" /> Today's Panchang
+            </h3>
+            <span className="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full">New Delhi, India</span>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center md:text-left">
+            <div>
+              <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">Tithi</p>
+              <p className="text-gray-900 font-semibold flex items-center justify-center md:justify-start gap-1"><Moon className="w-4 h-4 text-indigo-500"/> Krishna Ekadashi</p>
+            </div>
+            <div>
+              <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">Nakshatra</p>
+              <p className="text-gray-900 font-semibold flex items-center justify-center md:justify-start gap-1"><Star className="w-4 h-4 text-yellow-500"/> Rohini</p>
+            </div>
+            <div>
+              <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">Sunrise / Sunset</p>
+              <p className="text-gray-900 font-semibold text-sm">05:42 AM / 06:45 PM</p>
+            </div>
+            <div className="bg-red-50 rounded-lg p-2 md:p-0 md:bg-transparent">
+              <p className="text-red-500 text-xs font-bold uppercase tracking-wider mb-1">Rahu Kaal</p>
+              <p className="text-red-700 font-bold text-sm flex items-center justify-center md:justify-start gap-1"><Clock className="w-4 h-4"/> 10:30 AM - 12:00 PM</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Popular Services */}
@@ -430,6 +474,124 @@ export default function Home() {
                 <span className="font-semibold text-gray-700">{feature}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Premium Shubh Muhurat Calendar */}
+      <section className="py-24 relative overflow-hidden bg-maroon-900">
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/mandala.png')]"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-saffron-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <span className="text-gold-400 font-bold tracking-widest uppercase text-sm mb-2 block">Vedic Calendar</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
+              Upcoming Shubh Muhurats
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto rounded-full"></div>
+            <p className="text-gold-100 mt-6 max-w-2xl mx-auto text-lg">Plan your sacred ceremonies on the most auspicious celestial dates.</p>
+          </div>
+
+          <div className="mt-12 pb-10 w-full overflow-hidden">
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={30}
+              slidesPerView={1.2}
+              breakpoints={{
+                640: { slidesPerView: 2.2 },
+                1024: { slidesPerView: 3.2 },
+                1280: { slidesPerView: 4.2 },
+              }}
+              autoplay={{ delay: 1000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+              speed={1000}
+              loop={true}
+              grabCursor={true}
+              className="px-4 py-8 max-w-[1400px] mx-auto"
+            >
+              {[...MUHURATS, ...MUHURATS].map((muhurat, idx) => (
+                <SwiperSlide 
+                  key={idx} 
+                  className="rounded-[2.5rem] overflow-hidden shadow-2xl relative flex flex-col group bg-maroon-800 h-[500px]"
+                >
+                  <div className="absolute inset-0">
+                    <img src={muhurat.img} alt={muhurat.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.05]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"></div>
+                  </div>
+                  
+                  <div className="relative p-8 h-full flex flex-col justify-between">
+                    {/* Date Badge */}
+                    <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 text-center w-24 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                      <div className="text-4xl font-black text-white leading-none mb-1">{muhurat.day}</div>
+                      <div className="text-xs font-bold text-gold-400 tracking-wider">{muhurat.month}</div>
+                    </div>
+                    
+                    <div className="mt-auto pt-6">
+                      <h3 className="text-3xl font-extrabold text-white mb-2 tracking-tight">{muhurat.title}</h3>
+                      <p className="text-gray-200 text-sm md:text-base mb-6 leading-relaxed line-clamp-2 md:line-clamp-none">{muhurat.desc}</p>
+                      
+                      <Link to={`/pandits`} className="inline-flex items-center justify-between w-full p-4 bg-white/10 hover:bg-gold-500 backdrop-blur-md border border-white/20 rounded-xl text-white font-bold text-lg transition-all duration-300 shadow-sm border border-white/30">
+                        <span>Book a Pandit</span>
+                        <span className="bg-white/20 p-2 rounded-xl group-hover:bg-amber-100/20">→</span>
+                      </Link>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
+      </section>
+
+      {/* Premium Testimonials with Swiper */}
+      <section className="pt-20 pb-6 px-4 bg-cream-50 relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="text-saffron-600 font-bold tracking-widest uppercase text-sm mb-2 block">Divine Connections</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-maroon-600 mb-6 font-serif">Devotee Experiences</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto rounded-full"></div>
+            <p className="text-gray-600 mt-6 text-lg">Thousands of blessed families. Here is what they are saying.</p>
+          </div>
+
+          <div className="max-w-6xl mx-auto pb-2">
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={30}
+              slidesPerView={1}
+              breakpoints={{
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              autoplay={{ delay: 3500, disableOnInteraction: false }}
+              grabCursor={true}
+              loop={true}
+              className="px-4 pt-4 pb-2"
+            >
+              {TESTIMONIALS.map((testimonial, i) => (
+                <SwiperSlide key={i} className="py-4">
+                  <div className="bg-white p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-saffron-50 h-full flex flex-col hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-shadow">
+                    <div className="flex items-center gap-4 mb-6">
+                      <img src={testimonial.avatar} alt={testimonial.name} className="w-16 h-16 rounded-full border-2 border-saffron-100 bg-orange-50 object-cover" />
+                      <div>
+                        <h4 className="font-bold text-gray-900 text-lg">{testimonial.name}</h4>
+                        <p className="text-sm text-saffron-600 font-medium">{testimonial.location}</p>
+                      </div>
+                      <Quote className="w-10 h-10 text-saffron-100 ml-auto" />
+                    </div>
+
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(5)].map((_, j) => (
+                        <Star key={j} className={`w-4 h-4 ${j < testimonial.rating ? 'fill-gold-500 text-gold-500' : 'text-gray-300'}`} />
+                      ))}
+                    </div>
+
+                    <p className="text-gray-600 italic leading-relaxed flex-grow text-lg">"{testimonial.text}"</p>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       </section>
