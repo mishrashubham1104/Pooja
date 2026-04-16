@@ -1,0 +1,20 @@
+# Main Dependency Directories
+node_modules/
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build Outputs
+dist/
+build/
+.next/
+out/
+
+# Editor/OS Files
+.DS_Store
+.vscode/
+.idea/
