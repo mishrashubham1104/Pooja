@@ -401,42 +401,98 @@ export default function Home() {
       </section>
 
       {/* Featured Pandits */}
-      <section className="py-20 bg-saffron-50 px-4">
+      <section className="py-24 bg-gradient-to-b from-saffron-50 to-white px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-maroon-600 mb-4">Featured Pandits</h2>
-            <div className="w-24 h-1 bg-gold-500 mx-auto rounded-full"></div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-maroon-600 mb-4">Featured Pandits</h2>
+            <div className="w-24 h-1.5 bg-gold-500 mx-auto rounded-full"></div>
+            <p className="text-gray-600 mt-4 max-w-xl mx-auto">Highly experienced and verified priests for your sacred rituals.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {featuredPandits.length > 0 ? featuredPandits.map((p) => (
-              <div key={p._id} className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow border border-saffron-100 relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-gold-500 text-white px-3 py-1 rounded-bl-lg font-bold text-sm flex items-center gap-1 shadow-md">
-                  <Star className="w-4 h-4 fill-white" /> {p.rating || 'New'}
+              <motion.div
+                key={p._id}
+                whileHover={{ y: -12 }}
+                className="group relative bg-white rounded-[2.5rem] p-8 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_50px_-10px_rgba(218,102,38,0.2)] transition-all duration-500 border border-saffron-100 flex flex-col"
+              >
+                {/* Decorative Pattern Background */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gold-50 rounded-bl-full opacity-40 -z-0 group-hover:scale-110 transition-transform duration-700"></div>
+                
+                {/* Top Banner/Badge */}
+                <div className="absolute top-6 right-6 z-10">
+                   <div className="flex items-center gap-1.5 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-gold-200 shadow-sm">
+                      <Star className="w-4 h-4 text-gold-500 fill-gold-500" />
+                      <span className="font-bold text-gray-800 text-sm">{p.rating || 'New'}</span>
+                   </div>
                 </div>
-                <div className="flex gap-4 mb-4">
-                  <img
-                    src={p.user?.avatarUrl || `https://api.dicebear.com/7.x/initials/svg?seed=${p.user?.name}&backgroundColor=fce8db&textColor=854d0e`}
-                    alt={p.user?.name}
-                    className="w-20 h-20 rounded-full border-2 border-saffron-200 bg-saffron-50 object-cover"
-                  />
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900">{p.user?.name}</h3>
-                    <p className="text-saffron-600 text-sm font-medium">{p.experience} years exp</p>
-                    <div className="flex items-center text-gray-500 text-sm mt-1">
-                      <MapPin className="w-3 h-3 mr-1" /> {p.city}
+
+                <div className="relative z-10 flex flex-col h-full">
+                  {/* Profile Header */}
+                  <div className="flex flex-col items-center text-center mb-8">
+                    <div className="relative mb-6">
+                       {/* Animated Glow behind avatar */}
+                       <div className="absolute inset-0 bg-gold-400 rounded-full blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+                       <img
+                        src={p.user?.avatarUrl || `https://api.dicebear.com/7.x/initials/svg?seed=${p.user?.name}&backgroundColor=fce8db&textColor=854d0e`}
+                        alt={p.user?.name}
+                        className="w-28 h-28 rounded-full border-4 border-white shadow-2xl object-cover relative z-10 bg-saffron-50 ring-4 ring-gold-50"
+                      />
+                      <div className="absolute bottom-2 right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-white shadow-lg z-20"></div>
+                    </div>
+
+                    <h3 className="text-2xl font-black text-gray-900 mb-1 group-hover:text-maroon-600 transition-colors uppercase tracking-tight">{p.user?.name}</h3>
+                    <div className="flex items-center justify-center gap-2 text-gold-600 font-bold text-xs uppercase tracking-widest mb-4">
+                       <CheckCircle className="w-4 h-4" />
+                       Verified Acharya
+                    </div>
+                    
+                    <div className="flex items-center justify-center gap-4 text-gray-500 font-medium text-sm">
+                       <span className="flex items-center gap-1"><MapPin className="w-4 h-4 text-gold-500" /> {p.city}</span>
+                       <span className="bg-gray-100 w-1 h-1 rounded-full"></span>
+                       <span>{p.experience}+ Yrs Exp</span>
                     </div>
                   </div>
+
+                  {/* Specializations Tags */}
+                  <div className="mb-10 min-h-[80px]">
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {p.specialization?.slice(0, 4).map((spec, i) => (
+                        <span key={i} className="px-4 py-1.5 bg-orange-50 text-orange-700 text-[10px] font-black rounded-xl border border-orange-100 uppercase tracking-wide">
+                          {spec}
+                        </span>
+                      ))}
+                      {p.specialization?.length > 4 && (
+                        <span className="px-4 py-1.5 bg-gray-50 text-gray-400 text-[10px] font-bold rounded-xl border border-gray-100 uppercase uppercase">
+                           +{p.specialization.length - 4} More
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="mt-auto space-y-3">
+                    <Link 
+                      to={`/book/${p._id}`} 
+                      className="flex items-center justify-center w-full py-4 bg-gradient-to-r from-maroon-600 to-maroon-700 text-white rounded-2xl font-black text-base shadow-[0_10px_25px_-5px_rgba(113,0,0,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(113,0,0,0.5)] active:scale-95 transition-all"
+                    >
+                      Book Now
+                    </Link>
+                    <Link 
+                      to={`/pandit/${p._id}`} 
+                      className="flex items-center justify-center w-full py-3 bg-white border-2 border-saffron-200 text-slate-700 rounded-2xl font-bold text-sm hover:bg-saffron-50 hover:border-saffron-300 transition-all"
+                    >
+                      View Profile
+                    </Link>
+                  </div>
                 </div>
-                <div className="text-sm text-gray-600 mb-6">
-                  <span className="font-semibold text-gray-700">Specialization:</span> {p.specialization?.join(', ')}
-                </div>
-                <div className="flex gap-2">
-                  <Link to={`/pandit/${p._id}`} className="flex-1 text-center py-2 border border-saffron-300 text-saffron-600 rounded-lg hover:bg-saffron-50 font-medium transition-colors">View Profile</Link>
-                  <Link to={`/book/${p._id}`} className="flex-1 text-center py-2 bg-saffron-500 text-white rounded-lg hover:bg-saffron-600 font-medium shadow-sm transition-colors">Book Now</Link>
-                </div>
-              </div>
+              </motion.div>
             )) : (
-              <div className="col-span-3 text-center text-gray-500 py-10 font-medium">No Pandits available yet. Be the first to register!</div>
+              <div className="col-span-full py-20 bg-white/50 border-4 border-dashed border-gold-200 rounded-[3rem] text-center">
+                 <div className="text-6xl mb-6">🔱</div>
+                 <h4 className="text-2xl font-bold text-gray-800 mb-2 font-serif">Awaiting Divine Presence</h4>
+                 <p className="text-gray-500">No featured pandits available at this moment. Please explore later or check our full directory.</p>
+              </div>
             )}
           </div>
         </div>
