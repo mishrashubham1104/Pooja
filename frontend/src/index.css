@@ -5,8 +5,18 @@
   --color-saffron-100: #fce8db;
   --color-saffron-500: #e86424;
   --color-saffron-600: #d04f19;
+  
+  --color-gold-50: #fffcf0;
+  --color-gold-200: #f1e4b3;
+  --color-gold-400: #e5cc76;
   --color-gold-500: #d4af37;
+  --color-gold-600: #b8982f;
+  
   --color-maroon-600: #800000;
+  --color-maroon-700: #660000;
+  --color-maroon-800: #4d0000;
+  --color-maroon-900: #330000;
+  
   --color-cream-50: #fdfbf7;
 }
 
@@ -43,4 +53,11 @@ body {
   overflow: hidden;
   mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+@media (max-width: 768px) {
+  .marquee-wrapper {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
 }

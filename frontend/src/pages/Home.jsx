@@ -535,19 +535,19 @@ export default function Home() {
       </section>
 
       {/* Premium Shubh Muhurat Calendar */}
-      <section className="py-24 relative overflow-hidden bg-maroon-900">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/mandala.png')]"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-saffron-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+      <section className="py-24 relative overflow-hidden bg-orange-50">
+        <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/mandala.png')]"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-saffron-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
 
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <span className="text-gold-400 font-bold tracking-widest uppercase text-sm mb-2 block">Vedic Calendar</span>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
+            <span className="text-saffron-600 font-bold tracking-widest uppercase text-sm mb-2 block">Vedic Calendar</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-maroon-900 mb-6">
               Upcoming Shubh Muhurats
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto rounded-full"></div>
-            <p className="text-gold-100 mt-6 max-w-2xl mx-auto text-lg">Plan your sacred ceremonies on the most auspicious celestial dates.</p>
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-saffron-500 to-transparent mx-auto rounded-full"></div>
+            <p className="text-gray-600 mt-6 max-w-2xl mx-auto text-lg leading-relaxed">Plan your sacred ceremonies on the most auspicious celestial dates.</p>
           </div>
 
           <div className="mt-12 pb-10 w-full overflow-hidden">
